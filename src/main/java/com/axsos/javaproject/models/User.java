@@ -1,12 +1,17 @@
 package com.axsos.javaproject.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -44,6 +49,10 @@ public class User {
     @Size(min=8, max=128, message="Password must be between 8 and 128 characters")
     private String password;
     
+    @NotEmpty(message="Address is required!")
+    @Size(min=8, max=128, message="Address must be between 3 and 128 characters")
+    private String address;
+    
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @NotEmpty(message="Please enter your birthdate")
     private Date birthDate;
@@ -68,69 +77,91 @@ public class User {
         this.updatedAt = new Date();
     }
     
+	@ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+    		name = "reviews",
+    		joinColumns = @JoinColumn(name = "user_id"),
+    		inverseJoinColumns = @JoinColumn(name = "worker_id")
+    		
+    		)
+	private List<Worker> workers;
+    
 	public User() {
 
 	}
 	public Long getId() {
 		return id;
 	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public String getFirstName() {
 		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
 	}
 	public String getLastName() {
 		return lastName;
 	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
 	public String getEmail() {
 		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
 	}
 	public Long getMobile() {
 		return mobile;
 	}
-	public void setMobile(Long mobile) {
-		this.mobile = mobile;
-	}
 	public String getPassword() {
 		return password;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public String getAddress() {
+		return address;
 	}
 	public Date getBirthDate() {
 		return birthDate;
 	}
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
-	}
 	public String getConfirm() {
 		return confirm;
-	}
-	public void setConfirm(String confirm) {
-		this.confirm = confirm;
 	}
 	public Date getCreatedAt() {
 		return createdAt;
 	}
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
 	public Date getUpdatedAt() {
 		return updatedAt;
+	}
+	public List<Worker> getWorkers() {
+		return workers;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public void setMobile(Long mobile) {
+		this.mobile = mobile;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+	public void setConfirm(String confirm) {
+		this.confirm = confirm;
+	}
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	public void setWorkers(List<Worker> workers) {
+		this.workers = workers;
+	}
+	
 	
 	
     
