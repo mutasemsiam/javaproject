@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,27 +9,59 @@
 <title>Registration Page</title>
 </head>
 <body>
-    <h1>Register!</h1>
-    
-    <p><form:errors path="user.*"/></p>
-    
-    <form:form method="POST" action="/registration" modelAttribute="user">
-        <p>
-            <form:label path="firstName">First Name</form:label>
-            <form:input path="firstName"/>
-            <form:errors class="text-danger" path="firstName" />
-        </p>
-        <p>
-            <form:label path="password">Password:</form:label>
-            <form:password path="password"/>
-            <form:errors class="text-danger" path="password" />
-        </p>
-        <p>
-            <form:label path="confirm">Password Confirmation:</form:label>
-            <form:password path="confirm"/>
-             <form:errors class="text-danger" path="confirm" />
-        </p>
-        <input type="submit" value="Register!"/>
-    </form:form>
+	<h1>Register!</h1>
+
+	<p>
+		<form:errors path="user.*" />
+	</p>
+
+	<form:form method="POST" action="/registration" modelAttribute="user">
+		<p>
+			<form:label path="firstName">First Name</form:label>
+			<form:input path="firstName" type="text" />
+			<form:errors class="text-danger" path="firstName" />
+		</p>
+
+		<p>
+			<form:label path="lastName">Last Name</form:label>
+			<form:input path="lastName" type="text" />
+			<form:errors class="text-danger" path="lastName" />
+		</p>
+
+		<p>
+			<form:label path="email">Email</form:label>
+			<form:input path="email" type="email" />
+			<form:errors class="text-danger" path="email" />
+		</p>
+
+		<p>
+			<form:label path="mobile">Mobile</form:label>
+			<form:input path="mobile" type="number" />
+			<form:errors class="text-danger" path="mobile" />
+		</p>
+
+		<p>
+			<form:label path="address">Address</form:label>
+			<form:input path="address" type="text" />
+			<form:errors class="text-danger" path="address" />
+		</p>
+
+		<p>
+			<form:label path="birthDate">Birth Date</form:label>
+			<form:input path="birthDate" type="date" />
+			<form:errors class="text-danger" path="birthDate" />
+		</p>
+		<p>
+			<form:label path="password">Password:</form:label>
+			<form:password path="password" />
+			<form:errors class="text-danger" path="password" />
+		</p>
+		<p>
+			<form:label path="passwordConfirmation">Password Confirmation:</form:label>
+			<form:password path="passwordConfirmation" />
+			<form:errors class="text-danger" path="passwordConfirmation" />
+		</p>
+		<input type="submit" value="Register!" />
+	</form:form>
 </body>
 </html>

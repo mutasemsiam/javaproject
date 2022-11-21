@@ -31,37 +31,37 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-//    @NotEmpty(message="First Name is required!")
-//    @Size(min=3, max=30, message="First Name must be between 3 and 30 characters")
+    @NotEmpty(message="First Name is required!")
+    @Size(min=3, max=30, message="First Name must be between 3 and 30 characters")
     private String firstName;
     
-//    @NotEmpty(message="Last Name is required!")
-//    @Size(min=3, max=30, message="Last Name must be between 3 and 30 characters")
+    @NotEmpty(message="Last Name is required!")
+    @Size(min=3, max=30, message="Last Name must be between 3 and 30 characters")
     private String lastName;
     
-//    @NotEmpty(message="Email is required!")
-//    @Email(message="Please enter a valid email!")
+    @NotEmpty(message="Email is required!")
+    @Email(message="Please enter a valid email!")
     private String email;
     
-//    @Size(min=10, max=10,  message = "Please enter a valid mobile number")
+    @Size(min=10, max=20,  message = "Please enter a valid mobile number")
     private String mobile;
     
-//    @NotEmpty(message="Password is r/equired!")
-//    @Size(min=8, max=128, message="Password must be between 8 and 128 c/haracters")
+    @NotEmpty(message="Password is r/equired!")
+    @Size(min=8, max=128, message="Password must be between 8 and 128 c/haracters")
     private String password;
     
-//    @NotEmpty(message="Address is required!")
-//    @Size(min=8, max=128, message="Address must be between 3 and 128 characters")
+    @NotEmpty(message="Address is required!")
+    @Size(min=3, max=128, message="Address must be between 3 and 128 characters")
     private String address;
     
-//    @DateTimeFormat(pattern="yyyy-MM-dd")
-//    @NotNull(message="Please enter your birthdate")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @NotNull(message="Please enter your birthdate")
     private Date birthDate;
     
     @Transient
-//    @NotEmpty(message="Confirm Password is required!")
-//    @Size(min=8, max=128, message="Confirm Password must be between 8 and 128 characters")
-    private String confirm;
+    @NotEmpty(message="Confirm Password is required!")
+    @Size(min=8, max=128, message="Confirm Password must be between 8 and 128 characters")
+    private String passwordConfirmation;
     
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -140,8 +140,13 @@ public class User {
 		return password;
 	}
 
-	public String getConfirm() {
-		return confirm;
+	
+	
+	public String getPasswordConfirmation() {
+		return passwordConfirmation;
+	}
+	public void setPasswordConfirmation(String passwordConfirmation) {
+		this.passwordConfirmation = passwordConfirmation;
 	}
 	public Date getCreatedAt() {
 		return createdAt;
@@ -167,9 +172,7 @@ public class User {
 	}
 	
 	
-	public void setConfirm(String confirm) {
-		this.confirm = confirm;
-	}
+
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}

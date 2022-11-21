@@ -1,4 +1,4 @@
-package com.axsos.javaproject.models;
+package com.axsos.javaproject.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
