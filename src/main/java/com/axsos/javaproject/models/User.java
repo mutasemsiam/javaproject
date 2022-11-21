@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -30,36 +31,36 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @NotEmpty(message="First Name is required!")
-    @Size(min=3, max=30, message="First Name must be between 3 and 30 characters")
+//    @NotEmpty(message="First Name is required!")
+//    @Size(min=3, max=30, message="First Name must be between 3 and 30 characters")
     private String firstName;
     
-    @NotEmpty(message="Last Name is required!")
-    @Size(min=3, max=30, message="Last Name must be between 3 and 30 characters")
+//    @NotEmpty(message="Last Name is required!")
+//    @Size(min=3, max=30, message="Last Name must be between 3 and 30 characters")
     private String lastName;
     
-    @NotEmpty(message="Email is required!")
-    @Email(message="Please enter a valid email!")
+//    @NotEmpty(message="Email is required!")
+//    @Email(message="Please enter a valid email!")
     private String email;
     
-    @NotEmpty(message="Mobile number is required!")
-    private Long mobile;
+//    @Size(min=10, max=10,  message = "Please enter a valid mobile number")
+    private String mobile;
     
-    @NotEmpty(message="Password is required!")
-    @Size(min=8, max=128, message="Password must be between 8 and 128 characters")
+//    @NotEmpty(message="Password is r/equired!")
+//    @Size(min=8, max=128, message="Password must be between 8 and 128 c/haracters")
     private String password;
     
-    @NotEmpty(message="Address is required!")
-    @Size(min=8, max=128, message="Address must be between 3 and 128 characters")
+//    @NotEmpty(message="Address is required!")
+//    @Size(min=8, max=128, message="Address must be between 3 and 128 characters")
     private String address;
     
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    @NotEmpty(message="Please enter your birthdate")
+//    @DateTimeFormat(pattern="yyyy-MM-dd")
+//    @NotNull(message="Please enter your birthdate")
     private Date birthDate;
     
     @Transient
-    @NotEmpty(message="Confirm Password is required!")
-    @Size(min=8, max=128, message="Confirm Password must be between 8 and 128 characters")
+//    @NotEmpty(message="Confirm Password is required!")
+//    @Size(min=8, max=128, message="Confirm Password must be between 8 and 128 characters")
     private String confirm;
     
     @Column(updatable=false)
@@ -85,27 +86,36 @@ public class User {
     		
     		)
 	private List<Worker> workers;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "users_roles", 
+        joinColumns = @JoinColumn(name = "user_id"), 
+        inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles;
     
 	public User() {
 
 	}
-	public Long getId() {
-		return id;
-	}
-	public String getFirstName() {
-		return firstName;
-	}
+	
+	
 	public String getLastName() {
 		return lastName;
 	}
 	public String getEmail() {
 		return email;
 	}
-	public Long getMobile() {
+	public String getMobile() {
 		return mobile;
 	}
-	public String getPassword() {
-		return password;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 	public String getAddress() {
 		return address;
@@ -113,6 +123,23 @@ public class User {
 	public Date getBirthDate() {
 		return birthDate;
 	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+	public Long getId() {
+		return id;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
 	public String getConfirm() {
 		return confirm;
 	}
@@ -125,30 +152,21 @@ public class User {
 	public List<Worker> getWorkers() {
 		return workers;
 	}
+	public List<Role> getRoles() {
+		return roles;
+	}
 	public void setId(Long id) {
 		this.id = id;
 	}
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public void setMobile(Long mobile) {
-		this.mobile = mobile;
-	}
+	
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
-	}
+	
+	
 	public void setConfirm(String confirm) {
 		this.confirm = confirm;
 	}
@@ -160,6 +178,9 @@ public class User {
 	}
 	public void setWorkers(List<Worker> workers) {
 		this.workers = workers;
+	}
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 	
 	

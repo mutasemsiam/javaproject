@@ -9,7 +9,9 @@ import com.axsos.javaproject.models.User;
 
 public interface UserRepository extends CrudRepository<User, Long> {
 	List<User> findAll();
-	Optional<User> findByEmail(String email);
+//	Optional<User> findByEmail(String email);
 	Optional<User> findById(Long id);
+//	Optional<User> findByName(String name);
+	User findByFirstName(String firstName);
 
 }
